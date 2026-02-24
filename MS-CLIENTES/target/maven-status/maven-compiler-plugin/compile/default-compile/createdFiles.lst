@@ -4,5 +4,10 @@ com\example\translate\Domain\Cliente.class
 com\example\translate\Repository\ClienteRepository.class
 com\example\translate\Main.class
 com\example\translate\Exception\ResourceNotFoundException.class
+com\example\translate\event\ClienteEventPublisher.class
+com\example\translate\event\ClienteEvent.class
+com\example\translate\config\JacksonConfig.class
+com\example\translate\event\ClienteEventType.class
+com\example\translate\config\RabbitConfig.class
 com\example\translate\Domain\Persona.class
 com\example\translate\Service\ClienteService.class

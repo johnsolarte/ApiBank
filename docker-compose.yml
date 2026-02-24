@@ -2,6 +2,15 @@ version: '3.8'
 
 services:
 
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - microservicios-net
+
   ms-clientes:
     build:
       context: ./MS-CLIENTES
@@ -9,6 +18,13 @@ services:
     container_name: ms-clientes
     ports:
       - "8081:8081"
+    depends_on:
+      - rabbitmq
+    environment:
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=5672
+      - RABBITMQ_USERNAME=guest
+      - RABBITMQ_PASSWORD=guest
     networks:
       - microservicios-net
 
@@ -21,8 +37,13 @@ services:
       - "8082:8082"
     depends_on:
       - ms-clientes
+      - rabbitmq
     environment:
       - CLIENTES_SERVICE_URL=http://ms-clientes:8081/api
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=5672
+      - RABBITMQ_USERNAME=guest
+      - RABBITMQ_PASSWORD=guest
     networks:
       - microservicios-net
 

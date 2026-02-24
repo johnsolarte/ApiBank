@@ -4,6 +4,9 @@ import com.example.translate.Domain.Cliente;
 import com.example.translate.Dto.ClienteDTO;
 import com.example.translate.Exception.ResourceNotFoundException;
 import com.example.translate.Repository.ClienteRepository;
+import com.example.translate.event.ClienteEvent;
+import com.example.translate.event.ClienteEventPublisher;
+import com.example.translate.event.ClienteEventType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +17,7 @@ import java.util.List;
 public class ClienteService {
 
     private final ClienteRepository clienteRepository;
+    private final ClienteEventPublisher clienteEventPublisher;
 
     public List<Cliente> findAll() {
         return clienteRepository.findAll();
@@ -31,7 +35,14 @@ public class ClienteService {
 
     public Cliente save(ClienteDTO dto) {
         Cliente cliente = toEntity(dto);
-        return clienteRepository.save(cliente);
+        Cliente saved = clienteRepository.save(cliente);
+        clienteEventPublisher.publish(new ClienteEvent(
+                ClienteEventType.CREATED,
+                saved.getClienteId(),
+                saved.getNombre(),
+                saved.getEstado()
+        ));
+        return saved;
     }
 
     public Cliente update(Long id, ClienteDTO dto) {
@@ -44,7 +55,14 @@ public class ClienteService {
         cliente.setTelefono(dto.getTelefono());
         cliente.setContrasena(dto.getContrasena());
         cliente.setEstado(dto.getEstado());
-        return clienteRepository.save(cliente);
+        Cliente saved = clienteRepository.save(cliente);
+        clienteEventPublisher.publish(new ClienteEvent(
+                ClienteEventType.UPDATED,
+                saved.getClienteId(),
+                saved.getNombre(),
+                saved.getEstado()
+        ));
+        return saved;
     }
 
     public Cliente patch(Long id, ClienteDTO dto) {
@@ -53,12 +71,26 @@ public class ClienteService {
         if (dto.getEstado() != null) cliente.setEstado(dto.getEstado());
         if (dto.getDireccion() != null) cliente.setDireccion(dto.getDireccion());
         if (dto.getTelefono() != null) cliente.setTelefono(dto.getTelefono());
-        return clienteRepository.save(cliente);
+        Cliente saved = clienteRepository.save(cliente);
+        clienteEventPublisher.publish(new ClienteEvent(
+                ClienteEventType.UPDATED,
+                saved.getClienteId(),
+                saved.getNombre(),
+                saved.getEstado()
+        ));
+        return saved;
     }
 
     public void delete(Long id) {
-        findById(id);
+        Cliente existing = findById(id);
         clienteRepository.deleteById(id);
+
+        clienteEventPublisher.publish(new ClienteEvent(
+                ClienteEventType.DELETED,
+                existing.getClienteId(),
+                existing.getNombre(),
+                existing.getEstado()
+        ));
     }
 
     private Cliente toEntity(ClienteDTO dto) {
