@@ -1,5 +1,6 @@
 package com.example.domain;
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import lombok.NoArgsConstructor;
 
@@ -16,6 +17,7 @@ public class Movimiento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime fecha;
     private String tipoMovimiento;
     private Double valor;
