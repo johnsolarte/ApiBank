@@ -28,12 +28,17 @@ El proyecto consiste en dos microservicios principales:
 ### Opción 1: Usando Docker Compose (Recomendado)
 
 ```bash
-# Clonar el repositorio
-git clone <repository-url>
-cd orders-api
+# 1. Compilar ms-clientes
+cd ms-clientes
+mvn clean package -DskipTests
 
-# Iniciar todos los servicios
-docker compose up --build
+# 2. Compilar ms-cuentas
+cd ../ms-cuentas
+mvn clean package -DskipTests
+
+# 3. Levantar todo desde la raíz
+cd ..
+docker-compose up --build
 
 # Los servicios estarán disponibles en:
 # MS-CLIENTES: http://localhost:8081/api
