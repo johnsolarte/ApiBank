@@ -29,7 +29,7 @@ El proyecto consiste en dos microservicios principales:
 
 ```bash
 # 1. Compilar ms-clientes
-cd ms-clientes
+cd Clientes
 mvn clean package -DskipTests
 
 # 2. Compilar ms-cuentas
