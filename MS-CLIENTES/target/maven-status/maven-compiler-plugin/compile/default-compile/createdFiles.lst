@@ -1,0 +1,8 @@
+com\example\translate\Controller\ClienteController.class
+com\example\translate\Dto\ClienteDTO.class
+com\example\translate\Domain\Cliente.class
+com\example\translate\Repository\ClienteRepository.class
+com\example\translate\Main.class
+com\example\translate\Exception\ResourceNotFoundException.class
+com\example\translate\Domain\Persona.class
+com\example\translate\Service\ClienteService.class

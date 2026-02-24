@@ -1,4 +1,4 @@
-# Orders API - Sistema de Microservicios Bancarios
+# Sistema de Microservicios Bancarios
 
 Un sistema de microservicios para la gestión de clientes y cuentas bancarias, construido con Spring Boot y Docker.
 
