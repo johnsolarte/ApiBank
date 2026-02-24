@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+
+  ms-clientes:
+    build:
+      context: ./MS-CLIENTES
+      dockerfile: Dockerfile
+    container_name: ms-clientes
+    ports:
+      - "8081:8081"
+    networks:
+      - microservicios-net
+
+  ms-cuentas:
+    build:
+      context: ./Cuentas
+      dockerfile: Dockerfile
+    container_name: ms-cuentas
+    ports:
+      - "8082:8082"
+    depends_on:
+      - ms-clientes
+    environment:
+      - CLIENTES_SERVICE_URL=http://ms-clientes:8081/api
+    networks:
+      - microservicios-net
+
+networks:
+  microservicios-net:
+    driver: bridge

@@ -1,0 +1,246 @@
+{
+  "info": {
+    "name": "Banco Prueba Tecnica",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "MS-CLIENTES",
+      "item": [
+        {
+          "name": "Obtener todos los clientes",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8081/api/clientes"
+          }
+        },
+        {
+          "name": "Obtener cliente por ID",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8081/api/clientes/1"
+          }
+        },
+        {
+          "name": "Obtener cliente por ClienteId",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8081/api/clientes/clienteId/jose123"
+          }
+        },
+        {
+          "name": "Crear cliente",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:8081/api/clientes",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Jose Lema\",\n  \"genero\": \"M\",\n  \"edad\": 30,\n  \"identificacion\": \"001\",\n  \"direccion\": \"Otavalo s/n y principal\",\n  \"telefono\": \"098254785\",\n  \"clienteId\": \"jose123\",\n  \"contrasena\": \"1234\",\n  \"estado\": true\n}"
+            }
+          }
+        },
+        {
+          "name": "Actualizar cliente (PUT)",
+          "request": {
+            "method": "PUT",
+            "url": "http://localhost:8081/api/clientes/1",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Jose Lema Actualizado\",\n  \"genero\": \"M\",\n  \"edad\": 31,\n  \"identificacion\": \"001\",\n  \"direccion\": \"Nueva Direccion\",\n  \"telefono\": \"098254785\",\n  \"contrasena\": \"1234\",\n  \"estado\": true\n}"
+            }
+          }
+        },
+        {
+          "name": "Actualizar parcial cliente (PATCH)",
+          "request": {
+            "method": "PATCH",
+            "url": "http://localhost:8081/api/clientes/1",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"estado\": false\n}"
+            }
+          }
+        },
+        {
+          "name": "Eliminar cliente",
+          "request": {
+            "method": "DELETE",
+            "url": "http://localhost:8081/api/clientes/1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "MS-CUENTAS",
+      "item": [
+        {
+          "name": "Obtener todas las cuentas",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8082/api/cuentas"
+          }
+        },
+        {
+          "name": "Obtener cuenta por ID",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8082/api/cuentas/1"
+          }
+        },
+        {
+          "name": "Crear cuenta",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:8082/api/cuentas",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"numeroCuenta\": \"478758\",\n  \"tipoCuenta\": \"Ahorros\",\n  \"saldoInicial\": 2000,\n  \"estado\": true,\n  \"clienteId\": \"jose123\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Actualizar cuenta (PUT)",
+          "request": {
+            "method": "PUT",
+            "url": "http://localhost:8082/api/cuentas/1",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tipoCuenta\": \"Corriente\",\n  \"estado\": true,\n  \"clienteId\": \"jose123\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Actualizar parcial cuenta (PATCH)",
+          "request": {
+            "method": "PATCH",
+            "url": "http://localhost:8082/api/cuentas/1",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"estado\": false\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "MS-MOVIMIENTOS",
+      "item": [
+        {
+          "name": "Obtener todos los movimientos",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8082/api/movimientos"
+          }
+        },
+        {
+          "name": "Deposito",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:8082/api/movimientos",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"numeroCuenta\": \"225487\",\n  \"valor\": 600\n}"
+            }
+          }
+        },
+        {
+          "name": "Retiro",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:8082/api/movimientos",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"numeroCuenta\": \"478758\",\n  \"valor\": -575\n}"
+            }
+          }
+        },
+        {
+          "name": "Retiro sin saldo (error esperado)",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:8082/api/movimientos",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"numeroCuenta\": \"495878\",\n  \"valor\": -999\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "MS-REPORTES",
+      "item": [
+        {
+          "name": "Reporte por fechas y cliente",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8082/api/reportes?clienteId=marianela123&fechaInicio=2022-01-01&fechaFin=2022-12-31",
+              "host": ["http://localhost:8082"],
+              "path": ["api", "reportes"],
+              "query": [
+                { "key": "clienteId", "value": "marianela123" },
+                { "key": "fechaInicio", "value": "2022-01-01" },
+                { "key": "fechaFin", "value": "2022-12-31" }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
