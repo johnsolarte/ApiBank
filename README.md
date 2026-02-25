@@ -142,7 +142,7 @@ mvn test
 - MS-CLIENTES: Incluye tests unitarios para la capa de servicio (por ejemplo `ClienteService`)
 - MS-CUENTAS: Incluye tests unitarios para la capa de servicio (por ejemplo `CuentaService` y `MovimientoService`, según corresponda)
 
-### Prueba de Integración (deseable)
+### Prueba de Integración
 - MS-CLIENTES: `ClienteControllerIT` (SpringBootTest + MockMvc). Ejecutar solo esa prueba:
 
 ```bash
