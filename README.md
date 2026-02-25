@@ -142,6 +142,14 @@ mvn test
 - MS-CLIENTES: Incluye tests unitarios para la capa de servicio (por ejemplo `ClienteService`)
 - MS-CUENTAS: Incluye tests unitarios para la capa de servicio (por ejemplo `CuentaService` y `MovimientoService`, según corresponda)
 
+### Prueba de Integración (deseable)
+- MS-CLIENTES: `ClienteControllerIT` (SpringBootTest + MockMvc). Ejecutar solo esa prueba:
+
+```bash
+cd MS-CLIENTES
+mvn -Dtest=ClienteControllerIT test
+```
+
 ## 📦 Colección Postman
 
 Se incluye una colección de Postman en `postman-collection.json` con todos los endpoints listos para probar:
