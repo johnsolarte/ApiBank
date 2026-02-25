@@ -42,10 +42,10 @@ docker-compose up --build
 # RabbitMQ UI: http://localhost:15672 (user: guest, pass: guest)
 ```
 
-Si tu instalación usa el binario clásico, también puedes usar:
+Si tu instalación usa Docker Compose v2, el comando equivalente es:
 
 ```bash
-docker-compose up --build
+docker compose up --build
 ```
 
 ### Opción 2: Ejecución Local
@@ -68,7 +68,7 @@ mvn spring-boot:run
 
 ## 📊 Base de Datos
 
-El proyecto utiliza una base de datos H2 en memoria. El esquema y datos iniciales se definen en `BaseDatos.sql`:
+El proyecto utiliza una base de datos H2 en memoria (los datos se reinician al reiniciar el servicio). El esquema y datos iniciales se definen en `BaseDatos.sql`:
 
 ### Tablas Principales
 
@@ -105,8 +105,8 @@ Y 5 cuentas bancarias asociadas.
 - `GET /api/clientes/clienteId/{clienteId}` - Obtener cliente por clienteId
 - `POST /api/clientes` - Crear nuevo cliente
 - `PUT /api/clientes/{id}` - Actualizar cliente
-- `DELETE /api/clientes/{id}` - Eliminar cliente
 - `PATCH /api/clientes/{id}` - Actualización parcial de cliente
+- `DELETE /api/clientes/{id}` - Eliminar cliente
 
 ### MS-CUENTAS (Port 8082)
 
@@ -154,7 +154,7 @@ Se incluye una colección de Postman en `postman-collection.json` con todos los 
 
 ### Variables de Entorno
 
-**MS-CUENTAS** requiere la variable:
+**MS-CUENTAS** puede usar la variable:
 - `CLIENTES_SERVICE_URL=http://ms-clientes:8081/api` (sobreescribe `clientes.service.url` y permite comunicación entre microservicios)
 
 ### Base de Datos H2
