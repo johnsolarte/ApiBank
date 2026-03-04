@@ -1,6 +1,6 @@
 # Sistema de Microservicios Bancarios
 
-Un sistema de microservicios para la gestión de clientes y cuentas bancarias, construido con Spring Boot, RabbitMQ y Docker. Cumple con los requerimientos de la prueba técnica, incluyendo comunicación asíncrona entre microservicios.
+Un sistema de microservicios para la gestión de clientes y cuentas bancarias, construido con Spring Boot, RabbitMQ y Docker.incluyende comunicación asíncrona entre microservicios.
 
 ## 🏗️ Arquitectura
 
